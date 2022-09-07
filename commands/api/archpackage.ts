@@ -27,8 +27,6 @@ const command: Command = {
 
     await interaction.defer();
 
-    console.log(new Date(response.updated));
-
     const embed = new Embed()
       .setTitle(response.name)
       .setDescription(response.desc)

@@ -1,5 +1,6 @@
 <p align="center">
- <h1 align="center">xeorarch-discord</h1>
+ <img width=400px src="assets/avatar.png" alt="Bot logo">
+ <h1 align="center">Shitass</h1>
  <h3 align="center">Discord bot for various tasks</h3>
 </p>
 
@@ -7,13 +8,14 @@
 
 1. Install [deno](https://deno.land/#installation)
 
-1. Set up your [.env](example.env) (example in [example.env](example.env))
+2. Set up your [.env](example.env) (example in [example.env](example.env))
 
 ```env
 BOT_TOKEN="YOUR_TOKEN"
 BOT_COLOR="#925dc4"
+SERVER_PORT=443
 ```
 
-1. Start bot via `make start`
+3. Start bot via `make start`
 
 Now you have running bot!

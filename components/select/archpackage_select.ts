@@ -1,32 +1,12 @@
+import { Component } from "../../types/mod.ts";
 import { ActionRowComponent, Embed, xeorarch } from "../../deps.ts";
-import { Command } from "../../types/mod.ts";
 
-const command: Command = {
-  name: "archpackage",
-  description: "Search for arch packages",
-  options: [
-    {
-      name: "query",
-      description: "Query for search",
-      type: 3,
-      required: true,
-    },
-  ],
+const component: Component = {
+  customId: /archpackage_select/,
   run: async (_client, interaction) => {
-    const query = interaction.options.find(
-      (option) => option.name == "query",
-    )?.value;
+    const query = interaction.data.values[0];
 
     const response = (await xeorarch.Search.search(query)).slice(0, 10);
-    if (!response) {
-      return interaction.reply({
-        content:
-          "I can't find this package! Bruh, you should try to find it in the trash can.",
-        ephemeral: true,
-      });
-    }
-
-    await interaction.defer();
 
     const selectRow: ActionRowComponent = {
       type: 1,
@@ -82,11 +62,11 @@ const command: Command = {
         { name: "Install", value: `\`${response[0].install}\`` },
       ]);
 
-    return interaction.reply({
+    return interaction.updateMessage({
       embeds: [embed],
       components: [selectRow, buttonsRow],
     });
   },
 };
 
-export default command;
+export default component;

@@ -50,7 +50,7 @@ const component: Component = {
       .setTitle(response[0].name)
       .setDescription(response[0].desc)
       .setURL(response[0].url)
-      //.setTimestamp(new Date(response[0].updated).toISOString())
+      .setTimestamp(Date.parse(response[0].updated))
       .setAuthor(response[0].author?.toString())
       .setFields([
         {

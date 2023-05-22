@@ -1,5 +1,5 @@
-const server = async (_request: Request): Promise<Response> => {
-  return await new Response("oh hi", { status: 200 });
+const server = (_request: Request): Response => {
+  return Response.redirect("https://www.youtube.com/watch?v=IM6oVTDxiHg");
 };
 
 export default server;

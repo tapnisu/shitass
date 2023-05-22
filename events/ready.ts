@@ -1,4 +1,3 @@
-import { ApplicationCommandPartial } from "../deps.ts";
 import { Event } from "../types/mod.ts";
 
 const event: Event = {
@@ -6,11 +5,7 @@ const event: Event = {
   run: (client) => {
     client.setPresence({ name: "Oh hi!", type: 0 });
 
-    const commands = client.interactions.commands;
-
-    client.commands.forEach((command) =>
-      commands?.create(command as ApplicationCommandPartial)
-    );
+    client.interactions.commands.bulkEdit(client.commands.array());
 
     console.log(`${client.user?.tag} is up!`);
   },

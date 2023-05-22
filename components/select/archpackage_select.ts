@@ -1,10 +1,12 @@
-import { Component } from "../../types/mod.ts";
 import { ActionRowComponent, Embed, xeorarch } from "../../deps.ts";
+import { Component } from "../../types/mod.ts";
 
 const component: Component = {
   customId: /archpackage_select/,
   run: async (_client, interaction) => {
-    const query = interaction.data.values[0];
+    const query = interaction.data.values?.[0];
+
+    if (!query) return;
 
     const response = (await xeorarch.Search.search(query)).slice(0, 10);
 
@@ -21,7 +23,7 @@ const component: Component = {
               description: `${p.desc.slice(0, 100)}`,
             };
           }),
-          "placeholder": "Choose a package",
+          placeholder: "Choose a package",
         },
       ],
     };
@@ -48,7 +50,7 @@ const component: Component = {
       .setTitle(response[0].name)
       .setDescription(response[0].desc)
       .setURL(response[0].url)
-      .setTimestamp(Date.parse(response[0].updated))
+      .setTimestamp(Date.parse(response[0].updated.toString()))
       .setAuthor(response[0].author?.toString())
       .setFields([
         {

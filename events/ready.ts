@@ -12,9 +12,7 @@ const event: Event = {
       commands?.create(command as ApplicationCommandPartial)
     );
 
-    console.log(
-      `${client.user?.username}#${client.user?.discriminator} is up!`,
-    );
+    console.log(`${client.user?.tag} is up!`);
   },
 };
 

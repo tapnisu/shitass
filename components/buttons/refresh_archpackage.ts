@@ -6,7 +6,7 @@ const component: Component = {
   run: async (_client, interaction) => {
     const query = interaction.data.custom_id.replace(
       /refresh_archpackage_/,
-      ""
+      "",
     );
     const response = (await xeorarch.Search.search(query)).slice(0, 10);
 

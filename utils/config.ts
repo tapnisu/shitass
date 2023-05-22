@@ -9,9 +9,10 @@ interface Env {
 }
 
 const getEnv = async (): Promise<Env> => {
-  const env = (Deno.env.get("MODE") == "DENODEPLOY"
-    ? Deno.env.toObject()
-    : await load()) as unknown as Env;
+  const env =
+    (Deno.env.get("MODE") == "DENODEPLOY"
+      ? Deno.env.toObject()
+      : await load()) as unknown as Env;
 
   if (!env.BOT_COLOR) env.BOT_COLOR = "#000000";
 

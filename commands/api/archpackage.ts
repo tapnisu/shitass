@@ -14,7 +14,7 @@ const command: Command = {
   ],
   run: async (_client, interaction) => {
     const query = interaction.options.find(
-      (option) => option.name == "query",
+      (option) => option.name == "query"
     )?.value;
 
     const response = (await xeorarch.Search.search(query)).slice(0, 10);
@@ -41,7 +41,7 @@ const command: Command = {
               description: `${p.desc.slice(0, 100)}`,
             };
           }),
-          "placeholder": "Choose a package",
+          placeholder: "Choose a package",
         },
       ],
     };
@@ -68,7 +68,7 @@ const command: Command = {
       .setTitle(response[0].name)
       .setDescription(response[0].desc)
       .setURL(response[0].url)
-      .setTimestamp(Date.parse(response[0].updated))
+      .setTimestamp(Date.parse(response[0].updated.toString()))
       .setAuthor(response[0].author?.toString())
       .setFields([
         {

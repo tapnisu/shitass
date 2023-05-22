@@ -2,10 +2,9 @@ import Client from "../core.ts";
 import { ClientEvents } from "../deps.ts";
 
 interface Run {
-  (client: Client, ...args: eventArgs): void;
+  // deno-lint-ignore no-explicit-any
+  (client: Client, ...args: any[]): void;
 }
-
-type eventArgs = ClientEvents[keyof ClientEvents];
 
 export interface Event {
   name: keyof ClientEvents;

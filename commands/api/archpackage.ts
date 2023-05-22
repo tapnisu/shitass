@@ -14,7 +14,7 @@ const command: Command = {
   ],
   run: async (_client, interaction) => {
     const query = interaction.options.find(
-      (option) => option.name == "query"
+      (option) => option.name == "query",
     )?.value;
 
     const response = (await xeorarch.Search.search(query)).slice(0, 10);

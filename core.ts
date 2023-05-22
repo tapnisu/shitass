@@ -3,7 +3,7 @@ import GetComponents from "./components/mod.ts";
 import { Client, Collection, GatewayIntents, serve } from "./deps.ts";
 import GetEvents from "./events/mod.ts";
 import { Command, Component, Event } from "./types/mod.ts";
-import env from "./utils/config.ts";
+import { env } from "./utils/config.ts";
 import server from "./utils/server.ts";
 
 class ExtendedClient extends Client {

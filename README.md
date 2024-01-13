@@ -10,11 +10,11 @@
 
 2. Set up your [.env](example.env) (example in [example.env](example.env))
 
-```env
-BOT_TOKEN="YOUR_TOKEN"
-BOT_COLOR="#925dc4"
-SERVER_PORT=443
-```
+   ```env
+   BOT_TOKEN="YOUR_TOKEN"
+   BOT_COLOR="#925dc4"
+   SERVER_PORT=443
+   ```
 
 3. Start bot via `make start`
 

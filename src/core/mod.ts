@@ -3,7 +3,7 @@ import { ComponentsCollection } from "@components/mod.ts";
 import { EventsCollection } from "@events/mod.ts";
 import { TaprisCommand, TaprisComponent, TaprisEvent } from "@framework/mod.ts";
 import { Config } from "@utils/mod.ts";
-import { Client, Collection, GatewayIntents } from "harmony/mod.ts";
+import { Client, Collection } from "harmony/mod.ts";
 
 export class TaprisClient extends Client {
   public commands: Collection<string, TaprisCommand>;
@@ -18,7 +18,7 @@ export class TaprisClient extends Client {
     config: Config,
     commands: TaprisCommand[],
     events: TaprisEvent[],
-    components: TaprisComponent[],
+    components: TaprisComponent[]
   ) {
     super();
 
@@ -34,7 +34,7 @@ export class TaprisClient extends Client {
 
     this.events.array().forEach((event) =>
       // deno-lint-ignore no-explicit-any
-      this.on(event.name, event.run.bind(null, this) as any),
+      this.on(event.name, event.run.bind(null, this) as any)
     );
   }
 
@@ -42,14 +42,7 @@ export class TaprisClient extends Client {
    * Start bot
    */
   public async start() {
-    await this.connect(this.token, [
-      GatewayIntents.DIRECT_MESSAGES,
-      GatewayIntents.GUILDS,
-      GatewayIntents.GUILD_MESSAGES,
-      GatewayIntents.GUILD_MEMBERS,
-      GatewayIntents.GUILD_VOICE_STATES,
-      GatewayIntents.GUILD_PRESENCES,
-    ]);
+    await this.connect(this.token);
   }
 
   /**

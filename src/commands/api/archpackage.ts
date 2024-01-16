@@ -16,6 +16,8 @@ export default new TaprisCommand()
     required: true,
   })
   .setRun(async (_client, interaction) => {
+    await interaction.defer();
+
     const query = interaction.options.find(
       (option) => option.name == "query"
     )?.value;
@@ -26,11 +28,8 @@ export default new TaprisCommand()
       return interaction.reply({
         content:
           "I can't find this package! Bruh, you should try to find it in the trash can.",
-        ephemeral: true,
       });
     }
-
-    await interaction.defer();
 
     const selectRow: ActionRowComponent = {
       type: 1,

@@ -4,7 +4,6 @@
     "dev": "deno run --watch --allow-env --allow-net --allow-read mod.ts",
     "check": "deno check mod.ts",
     "lint": "deno lint",
-    "test": "deno test",
     "cache": "deno cache mod.ts",
     "fmt": "deno run --allow-read --allow-write --allow-sys --allow-env npm:prettier . --write",
     "format": "deno run --allow-read --allow-write --allow-sys --allow-env npm:prettier . --write",

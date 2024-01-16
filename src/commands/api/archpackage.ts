@@ -15,7 +15,7 @@ export default new TaprisCommand()
     type: ApplicationCommandOptionType.STRING,
     required: true,
   })
-  .setRun(async (client, interaction) => {
+  .setRun(async (_client, interaction) => {
     const query = interaction.options.find(
       (option) => option.name == "query"
     )?.value;

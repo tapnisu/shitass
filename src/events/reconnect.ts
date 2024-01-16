@@ -3,7 +3,7 @@ import { TaprisEvent } from "@framework/mod.ts";
 
 export default new TaprisEvent<"reconnect">()
   .setName("reconnect")
-  .setRun(async (client: TaprisClient) => {
+  .setRun((client: TaprisClient) => {
     client.updatePresence();
 
     console.info(`${client.user?.tag} is reconnected!`);

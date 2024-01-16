@@ -1,0 +1,24 @@
+{
+  "tasks": {
+    "start": "deno run --allow-env --allow-net --allow-read mod.ts",
+    "dev": "deno run --watch --allow-env --allow-net --allow-read mod.ts",
+    "check": "deno check mod.ts",
+    "lint": "deno lint",
+    "cache": "deno cache mod.ts",
+    "fmt": "deno run --allow-read --allow-write --allow-sys --allow-env npm:prettier . --write",
+    "format": "deno run --allow-read --allow-write --allow-sys --allow-env npm:prettier . --write",
+    "compile": "deno compile --allow-env --allow-net --allow-read mod.ts"
+  },
+  "imports": {
+    "@commands/": "./src/commands/",
+    "@components/": "./src/components/",
+    "@core/": "./src/core/",
+    "@events/": "./src/events/",
+    "@framework/": "./src/framework/",
+    "@utils/": "./src/utils/",
+    "harmony/": "https://deno.land/x/harmony@v2.9.0/",
+    "std/": "https://deno.land/std@0.212.0/",
+    "xeorarch/": "https://deno.land/x/xeorarchx@v3.1.0/"
+  },
+  "lock": false
+}

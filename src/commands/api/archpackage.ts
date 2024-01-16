@@ -1,20 +1,24 @@
-import { ActionRowComponent, Embed, xeorarch } from "../../deps.ts";
-import { Command } from "../../types/mod.ts";
+import { TaprisCommand } from "@framework/mod.ts";
+import {
+  ActionRowComponent,
+  ApplicationCommandOptionType,
+  Embed,
+} from "harmony/mod.ts";
+import * as xeorarch from "xeorarch/mod.ts";
 
-const command: Command = {
-  name: "archpackage",
-  description: "Search for arch packages",
-  options: [
-    {
-      name: "query",
-      description: "Query for search",
-      type: 3,
-      required: true,
-    },
-  ],
-  run: async (_client, interaction) => {
-    const query = interaction.options.find((option) => option.name == "query")
-      ?.value;
+export default new TaprisCommand()
+  .setName("archpackage")
+  .setDescription("Search for arch packages")
+  .setOptions({
+    name: "query",
+    description: "Query for search",
+    type: ApplicationCommandOptionType.STRING,
+    required: true,
+  })
+  .setRun(async (client, interaction) => {
+    const query = interaction.options.find(
+      (option) => option.name == "query"
+    )?.value;
 
     const response = (await xeorarch.Search.search(query)).slice(0, 10);
 
@@ -86,7 +90,4 @@ const command: Command = {
       embeds: [embed],
       components: [selectRow, buttonsRow],
     });
-  },
-};
-
-export default command;
+  });

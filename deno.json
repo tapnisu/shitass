@@ -1,0 +1,28 @@
+{
+  "tasks": {
+    "start": "deno run --allow-env --allow-net --allow-read mod.ts",
+    "dev": "deno run --watch --allow-env --allow-net --allow-read mod.ts",
+    "check": "deno check mod.ts",
+    "lint": "deno lint",
+    "test": "deno test",
+    "cache": "deno cache mod.ts",
+    "fmt": "deno run --allow-read --allow-write --allow-sys --allow-env npm:prettier . --write",
+    "format": "deno run --allow-read --allow-write --allow-sys --allow-env npm:prettier . --write",
+    "compile": "deno compile --allow-env --allow-net --allow-read mod.ts"
+  },
+  "imports": {
+    "@commands/": "./src/commands/",
+    "@components/": "./src/components/",
+    "@core/": "./src/core/",
+    "@events/": "./src/events/",
+    "@framework/": "./src/framework/",
+    "@utils/": "./src/utils/",
+    "canvas/": "https://deno.land/x/canvas@v1.4.1/",
+    "gtr/": "https://deno.land/x/gtr@v0.0.1/",
+    "harmony/": "https://deno.land/x/harmony@v2.9.0/",
+    "postgres/": "https://deno.land/x/postgres@v0.17.0/",
+    "ky": "https://esm.sh/ky@1.2.0",
+    "std/": "https://deno.land/std@0.212.0/"
+  },
+  "lock": false
+}

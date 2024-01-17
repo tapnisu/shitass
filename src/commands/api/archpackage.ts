@@ -18,16 +18,15 @@ export default new TaprisCommand()
   .setRun(async (_client, interaction) => {
     await interaction.defer();
 
-    const query = interaction.options.find(
-      (option) => option.name == "query"
-    )?.value;
+    const query = interaction.options.find((option) => option.name == "query")
+      ?.value;
 
     const response = (await xeorarch.Search.search(query)).slice(0, 10);
 
     if (!response || response.length == 0) {
       return interaction.reply({
         content:
-          "I can't find this package! Bruh, you should try to find it in the trash can.",
+          "I can't find this package! You should try to find it in the trash can :D",
       });
     }
 
@@ -36,7 +35,7 @@ export default new TaprisCommand()
       components: [
         {
           type: 3,
-          customID: `archpackage_select`,
+          customID: "archpackage_select",
           options: response.map((p) => {
             return {
               label: p.name,

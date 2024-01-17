@@ -18,7 +18,7 @@ export class TaprisClient extends Client {
     config: Config,
     commands: TaprisCommand[],
     events: TaprisEvent[],
-    components: TaprisComponent[]
+    components: TaprisComponent[],
   ) {
     super();
 
@@ -34,7 +34,7 @@ export class TaprisClient extends Client {
 
     this.events.array().forEach((event) =>
       // deno-lint-ignore no-explicit-any
-      this.on(event.name, event.run.bind(null, this) as any)
+      this.on(event.name, event.run.bind(null, this) as any),
     );
   }
 

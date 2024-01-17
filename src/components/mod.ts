@@ -1,7 +1,14 @@
+import archpackageSelect from "@components/archpackageSelect.ts";
+import refreshArchpackage from "@components/refreshArchpackage.ts";
 import { TaprisComponent } from "@framework/mod.ts";
 import { Collection } from "harmony/mod.ts";
+import delete_message from "./deleteMessage.ts";
 
-export const components = [];
+export const components = [
+  delete_message,
+  archpackageSelect,
+  refreshArchpackage,
+];
 
 /**
  * Create a collection of components

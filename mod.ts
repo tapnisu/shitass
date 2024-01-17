@@ -9,7 +9,6 @@ if (import.meta.main)
       token: env.BOT_TOKEN,
       botColor: env.BOT_COLOR,
 
-      serverPort: env.SERVER_PORT,
       authorId: env.AUTHOR_ID,
 
       mode: env.MODE,

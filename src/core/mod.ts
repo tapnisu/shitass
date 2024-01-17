@@ -12,7 +12,6 @@ export class TaprisClient extends Client {
 
   public botColor: string;
   public authorId: string;
-  public serverPort: string;
 
   constructor(
     config: Config,
@@ -30,7 +29,6 @@ export class TaprisClient extends Client {
     this.authorId = config.authorId;
 
     this.token = config.token;
-    this.serverPort = config.serverPort;
 
     this.events.array().forEach((event) =>
       // deno-lint-ignore no-explicit-any

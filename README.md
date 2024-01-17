@@ -1,5 +1,5 @@
 <p align="center">
- <img width=400px src="assets/avatar.png" alt="Bot logo">
+ <img width=400px src="assets/avatar.webp" alt="Bot logo">
  <h1 align="center">Shitass</h1>
  <h3 align="center">Discord bot for various tasks</h3>
 </p>
@@ -13,9 +13,8 @@
    ```env
    BOT_TOKEN="YOUR_TOKEN"
    BOT_COLOR="#925dc4"
-   SERVER_PORT=443
    ```
 
-3. Start bot via `make start`
+3. Start bot via `deno task start`
 
 Now you have running bot!

@@ -4,7 +4,6 @@ export interface Env {
   BOT_TOKEN: string;
   BOT_COLOR: string;
 
-  SERVER_PORT: string;
   AUTHOR_ID: string;
 
   MODE: "production" | "development" | string;
@@ -14,7 +13,6 @@ export interface Config {
   token: string;
   botColor: string;
 
-  serverPort: string;
   authorId: string;
 
   mode: "production" | "development" | string;

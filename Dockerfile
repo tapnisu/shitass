@@ -1,9 +1,9 @@
 FROM denoland/deno:alpine
 
 USER deno
-WORKDIR /
+WORKDIR /app
 
-ADD . .
+ADD . /app
 RUN deno task cache
 ENV MODE=production
 

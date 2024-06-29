@@ -12,7 +12,6 @@
 
    ```env
    BOT_TOKEN="YOUR_TOKEN"
-   BOT_COLOR="#925dc4"
    ```
 
 3. Start bot via `deno task start`

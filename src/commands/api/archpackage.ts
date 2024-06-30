@@ -18,15 +18,16 @@ export default new TaprisCommand()
   .setRun(async (_client, interaction) => {
     await interaction.defer();
 
-    const query = interaction.options.find((option) => option.name == "query")
-      ?.value;
+    const query = interaction.options.find(
+      (option) => option.name == "query",
+    )?.value;
 
-    const response = (await xeorarch.Search.search(query)).slice(0, 10);
+    const packages = (await xeorarch.Search.search(query)).slice(0, 10);
 
-    if (!response || response.length == 0) {
+    if (!packages || packages.length == 0) {
       return interaction.reply({
         content:
-          "I can't find this package! You should try to find it in the trash can :D",
+          "I can't find this package! Try to find it in the trash can :D",
       });
     }
 
@@ -36,7 +37,7 @@ export default new TaprisCommand()
         {
           type: 3,
           customID: "archpackage_select",
-          options: response.map((p) => {
+          options: packages.map((p) => {
             return {
               label: p.name,
               value: p.name,
@@ -53,7 +54,7 @@ export default new TaprisCommand()
       components: [
         {
           type: 2,
-          customID: `refresh_archpackage_${response[0].name}`,
+          customID: `refresh_archpackage_${packages[0].name}`,
           label: "Refresh",
           style: 2,
         },
@@ -67,21 +68,21 @@ export default new TaprisCommand()
     };
 
     const embed = new Embed()
-      .setTitle(response[0].name)
-      .setDescription(response[0].desc)
-      .setURL(response[0].url)
-      .setTimestamp(Date.parse(response[0].updated.toString()))
-      .setAuthor(response[0].author?.toString())
+      .setTitle(packages[0].name)
+      .setDescription(packages[0].desc)
+      .setURL(packages[0].url)
+      .setTimestamp(Date.parse(packages[0].updated.toString()))
+      .setAuthor(packages[0].author?.toString())
       .setFields([
         {
           name: "Version",
-          value: response[0].version?.toString(),
+          value: packages[0].version?.toString(),
           inline: true,
         },
-        { name: "Type", value: response[0].type, inline: true },
-        { name: "Arch", value: response[0].arch, inline: true },
-        { name: "Base", value: response[0].base, inline: true },
-        { name: "Install", value: `\`${response[0].install}\`` },
+        { name: "Type", value: packages[0].type, inline: true },
+        { name: "Arch", value: packages[0].arch, inline: true },
+        { name: "Base", value: packages[0].base, inline: true },
+        { name: "Install", value: `\`${packages[0].install}\`` },
       ]);
 
     return interaction.reply({

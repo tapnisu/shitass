@@ -72,14 +72,14 @@ export default new TaprisCommand()
         name: `/${command.name} ${
           command.options
             ? Array.prototype.map
-                .call(
-                  command.options,
-                  (option: ApplicationCommandOptionBase) =>
-                    `<${option.required ? "(required) " : ""}${option.name} [${
-                      option.description
-                    }]>`,
-                )
-                .join(" ")
+              .call(
+                command.options,
+                (option: ApplicationCommandOptionBase) =>
+                  `<${
+                    option.required ? "(required) " : ""
+                  }${option.name} [${option.description}]>`,
+              )
+              .join(" ")
             : ""
         }`,
         value: command.description,

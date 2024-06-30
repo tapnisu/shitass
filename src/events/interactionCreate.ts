@@ -21,7 +21,9 @@ export default new TaprisEvent<"interactionCreate">()
         });
       }
 
-      if (!interaction.member?.permissions.has(command.memberPermissions, true))
+      if (
+        !interaction.member?.permissions.has(command.memberPermissions, true)
+      ) {
         return await interaction.reply({
           embeds: [
             new Embed()
@@ -32,6 +34,7 @@ export default new TaprisEvent<"interactionCreate">()
           ],
           ephemeral: true,
         });
+      }
 
       return await command.run(client, interaction).catch(async (e) => {
         console.error(e);
@@ -42,7 +45,7 @@ export default new TaprisEvent<"interactionCreate">()
 
     if (interaction.isMessageComponent()) {
       const component = client.components.find((component) =>
-        component.customId.test(interaction.data.custom_id),
+        component.customId.test(interaction.data.custom_id)
       );
 
       if (!component) return;

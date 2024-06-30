@@ -32,7 +32,7 @@ export class TaprisClient extends Client {
 
     this.events.array().forEach((event) =>
       // deno-lint-ignore no-explicit-any
-      this.on(event.name, event.run.bind(null, this) as any)
+      this.on(event.name, event.run.bind(null, this) as any),
     );
   }
 

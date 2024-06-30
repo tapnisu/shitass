@@ -6,12 +6,6 @@ import {
   Embed,
 } from "harmony/mod.ts";
 
-interface HelpLocale {
-  isNotAValidCommand: (request: string) => string;
-  serverMember: (name?: string) => string;
-  required: string;
-}
-
 export default new TaprisCommand()
   .setName("help")
   .setDescription("Get info about commands")
@@ -72,14 +66,14 @@ export default new TaprisCommand()
         name: `/${command.name} ${
           command.options
             ? Array.prototype.map
-              .call(
-                command.options,
-                (option: ApplicationCommandOptionBase) =>
-                  `<${
-                    option.required ? "(required) " : ""
-                  }${option.name} [${option.description}]>`,
-              )
-              .join(" ")
+                .call(
+                  command.options,
+                  (option: ApplicationCommandOptionBase) =>
+                    `<${option.required ? "(required) " : ""}${option.name} [${
+                      option.description
+                    }]>`,
+                )
+                .join(" ")
             : ""
         }`,
         value: command.description,

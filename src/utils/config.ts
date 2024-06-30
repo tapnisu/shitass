@@ -19,10 +19,9 @@ export interface Config {
 }
 
 export const getEnv = async (): Promise<Env> => {
-  const env =
-    ((Deno.env.get("MODE") as Env["MODE"]) === "production"
-      ? Deno.env.toObject()
-      : await load()) as unknown as Env;
+  const env = ((Deno.env.get("MODE") as Env["MODE"]) === "production"
+    ? Deno.env.toObject()
+    : await load()) as unknown as Env;
 
   if (!env.BOT_COLOR) env.BOT_COLOR = "#000000";
   if (!env.AUTHOR_ID) env.AUTHOR_ID = "586128640136445964";

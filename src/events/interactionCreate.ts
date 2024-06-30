@@ -45,7 +45,7 @@ export default new TaprisEvent<"interactionCreate">()
 
     if (interaction.isMessageComponent()) {
       const component = client.components.find((component) =>
-        component.customId.test(interaction.data.custom_id)
+        component.customId.test(interaction.data.custom_id),
       );
 
       if (!component) return;

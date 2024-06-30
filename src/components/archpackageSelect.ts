@@ -62,7 +62,12 @@ export default new TaprisComponent()
         { name: "Type", value: packages[0].type, inline: true },
         { name: "Arch", value: packages[0].arch, inline: true },
         { name: "Base", value: packages[0].base, inline: true },
-        { name: "Install", value: `\`${packages[0].install}\`` },
+        {
+          name: "Install",
+          value: `\`${packages[0].install
+            .replaceAll("&lt;", "<")
+            .replaceAll("&gt;", ">")}\``,
+        },
       ]);
 
     return interaction.updateMessage({

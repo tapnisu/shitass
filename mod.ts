@@ -4,7 +4,7 @@ import { events } from "@events/mod.ts";
 import { env, TaprisClient, TaprisCommand, TaprisEvent } from "./src/mod.ts";
 
 if (import.meta.main) {
-  await new TaprisClient(
+  new TaprisClient(
     {
       token: env.BOT_TOKEN,
       botColor: env.BOT_COLOR,

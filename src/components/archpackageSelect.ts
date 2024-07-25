@@ -1,5 +1,9 @@
 import { TaprisComponent } from "@framework/mod.ts";
-import { ActionRowComponent, Embed } from "harmony/mod.ts";
+import {
+  ActionRowComponent,
+  Embed,
+  SelectComponentOption,
+} from "harmony/mod.ts";
 import * as xeorarch from "xeorarch/mod.ts";
 
 export default new TaprisComponent()
@@ -11,19 +15,31 @@ export default new TaprisComponent()
 
     const packages = (await xeorarch.Search.search(query)).slice(0, 10);
 
+    if (!packages || packages.length == 0)
+      return interaction.reply({
+        content:
+          "I can't find this package! Try to find it in the trash can :D",
+      });
+
+    const options: SelectComponentOption[] = [];
+
+    for (const p of packages) {
+      if (options.find((option) => option.label == p.name)) continue;
+
+      options.push({
+        label: p.name,
+        value: p.name,
+        description: `${p.desc.slice(0, 100)}`,
+      });
+    }
+
     const selectRow: ActionRowComponent = {
       type: 1,
       components: [
         {
           type: 3,
-          customID: `archpackage_select`,
-          options: packages.map((p) => {
-            return {
-              label: p.name,
-              value: p.name,
-              description: `${p.desc.slice(0, 100)}`,
-            };
-          }),
+          customID: "archpackage_select",
+          options,
           placeholder: "Choose a package",
         },
       ],
@@ -51,7 +67,6 @@ export default new TaprisComponent()
       .setTitle(packages[0].name)
       .setDescription(packages[0].desc)
       .setURL(packages[0].url)
-      .setTimestamp(Date.parse(packages[0].updated.toString()))
       .setAuthor(packages[0].author?.toString())
       .setFields([
         {
@@ -69,6 +84,12 @@ export default new TaprisComponent()
             .replaceAll("&gt;", ">")}\``,
         },
       ]);
+
+    try {
+      embed.setTimestamp(Date.parse(packages[0].updated.toString()));
+    } catch (err) {
+      console.error(err);
+    }
 
     return interaction.updateMessage({
       embeds: [embed],

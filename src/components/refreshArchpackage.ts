@@ -1,5 +1,9 @@
 import { TaprisComponent } from "@framework/mod.ts";
-import { ActionRowComponent, Embed } from "harmony/mod.ts";
+import {
+  ActionRowComponent,
+  Embed,
+  SelectComponentOption,
+} from "harmony/mod.ts";
 import * as xeorarch from "xeorarch/mod.ts";
 
 export default new TaprisComponent()
@@ -7,23 +11,36 @@ export default new TaprisComponent()
   .setRun(async (_client, interaction) => {
     const query = interaction.data.custom_id.replace(
       /refresh_archpackage_/,
-      "",
+      ""
     );
-    const response = (await xeorarch.Search.search(query)).slice(0, 10);
+
+    const packages = (await xeorarch.Search.search(query)).slice(0, 10);
+
+    if (!packages || packages.length == 0)
+      return interaction.reply({
+        content:
+          "I can't find this package! Try to find it in the trash can :D",
+      });
+
+    const options: SelectComponentOption[] = [];
+
+    for (const p of packages) {
+      if (options.find((option) => option.label == p.name)) continue;
+
+      options.push({
+        label: p.name,
+        value: p.name,
+        description: `${p.desc.slice(0, 100)}`,
+      });
+    }
 
     const selectRow: ActionRowComponent = {
       type: 1,
       components: [
         {
           type: 3,
-          customID: `archpackage_select`,
-          options: response.map((p) => {
-            return {
-              label: p.name,
-              value: p.name,
-              description: `${p.desc.slice(0, 100)}`,
-            };
-          }),
+          customID: "archpackage_select",
+          options,
           placeholder: "Choose a package",
         },
       ],
@@ -34,7 +51,7 @@ export default new TaprisComponent()
       components: [
         {
           type: 2,
-          customID: `refresh_archpackage_${response[0].name}`,
+          customID: `refresh_archpackage_${packages[0].name}`,
           label: "Refresh",
           style: 2,
         },
@@ -48,22 +65,32 @@ export default new TaprisComponent()
     };
 
     const embed = new Embed()
-      .setTitle(response[0].name)
-      .setDescription(response[0].desc)
-      .setURL(response[0].url)
-      .setTimestamp(Date.parse(response[0].updated.toString()))
-      .setAuthor(response[0].author?.toString())
+      .setTitle(packages[0].name)
+      .setDescription(packages[0].desc)
+      .setURL(packages[0].url)
+      .setAuthor(packages[0].author?.toString())
       .setFields([
         {
           name: "Version",
-          value: response[0].version?.toString(),
+          value: packages[0].version?.toString(),
           inline: true,
         },
-        { name: "Type", value: response[0].type, inline: true },
-        { name: "Arch", value: response[0].arch, inline: true },
-        { name: "Base", value: response[0].base, inline: true },
-        { name: "Install", value: `\`${response[0].install}\`` },
+        { name: "Type", value: packages[0].type, inline: true },
+        { name: "Arch", value: packages[0].arch, inline: true },
+        { name: "Base", value: packages[0].base, inline: true },
+        {
+          name: "Install",
+          value: `\`${packages[0].install
+            .replaceAll("&lt;", "<")
+            .replaceAll("&gt;", ">")}\``,
+        },
       ]);
+
+    try {
+      embed.setTimestamp(Date.parse(packages[0].updated.toString()));
+    } catch (err) {
+      console.error(err);
+    }
 
     return interaction.updateMessage({
       embeds: [embed],

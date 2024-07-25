@@ -3,6 +3,7 @@ import {
   ActionRowComponent,
   ApplicationCommandOptionType,
   Embed,
+  SelectComponentOption,
 } from "harmony/mod.ts";
 import * as xeorarch from "xeorarch/mod.ts";
 
@@ -24,10 +25,21 @@ export default new TaprisCommand()
 
     const packages = (await xeorarch.Search.search(query)).slice(0, 10);
 
-    if (!packages || packages.length == 0) {
+    if (!packages || packages.length == 0)
       return interaction.reply({
         content:
           "I can't find this package! Try to find it in the trash can :D",
+      });
+
+    const options: SelectComponentOption[] = [];
+
+    for (const p of packages) {
+      if (options.find((option) => option.label == p.name)) continue;
+
+      options.push({
+        label: p.name,
+        value: p.name,
+        description: `${p.desc.slice(0, 100)}`,
       });
     }
 
@@ -37,17 +49,7 @@ export default new TaprisCommand()
         {
           type: 3,
           customID: "archpackage_select",
-          options: [
-            ...new Set(
-              packages.map((p) => {
-                return {
-                  label: p.name,
-                  value: p.name,
-                  description: `${p.desc.slice(0, 100)}`,
-                };
-              })
-            ),
-          ],
+          options,
           placeholder: "Choose a package",
         },
       ],
@@ -85,7 +87,12 @@ export default new TaprisCommand()
         { name: "Type", value: packages[0].type, inline: true },
         { name: "Arch", value: packages[0].arch, inline: true },
         { name: "Base", value: packages[0].base, inline: true },
-        { name: "Install", value: `\`${packages[0].install}\`` },
+        {
+          name: "Install",
+          value: `\`${packages[0].install
+            .replaceAll("&lt;", "<")
+            .replaceAll("&gt;", ">")}\``,
+        },
       ]);
 
     try {

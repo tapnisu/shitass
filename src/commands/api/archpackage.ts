@@ -19,7 +19,7 @@ export default new TaprisCommand()
     await interaction.defer();
 
     const query = interaction.options.find(
-      (option) => option.name == "query",
+      (option) => option.name == "query"
     )?.value;
 
     const packages = (await xeorarch.Search.search(query)).slice(0, 10);
@@ -37,13 +37,17 @@ export default new TaprisCommand()
         {
           type: 3,
           customID: "archpackage_select",
-          options: packages.map((p) => {
-            return {
-              label: p.name,
-              value: p.name,
-              description: `${p.desc.slice(0, 100)}`,
-            };
-          }),
+          options: [
+            ...new Set(
+              packages.map((p) => {
+                return {
+                  label: p.name,
+                  value: p.name,
+                  description: `${p.desc.slice(0, 100)}`,
+                };
+              })
+            ),
+          ],
           placeholder: "Choose a package",
         },
       ],
@@ -71,7 +75,6 @@ export default new TaprisCommand()
       .setTitle(packages[0].name)
       .setDescription(packages[0].desc)
       .setURL(packages[0].url)
-      .setTimestamp(Date.parse(packages[0].updated.toString()))
       .setAuthor(packages[0].author?.toString())
       .setFields([
         {
@@ -84,6 +87,12 @@ export default new TaprisCommand()
         { name: "Base", value: packages[0].base, inline: true },
         { name: "Install", value: `\`${packages[0].install}\`` },
       ]);
+
+    try {
+      embed.setTimestamp(Date.parse(packages[0].updated.toString()));
+    } catch (err) {
+      console.error(err);
+    }
 
     return interaction.reply({
       embeds: [embed],

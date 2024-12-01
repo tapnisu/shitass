@@ -4,7 +4,7 @@ import {
   ApplicationCommandOptionBase,
   ApplicationCommandOptionType,
   Embed,
-} from "harmony/mod.ts";
+} from "@harmony/harmony";
 
 export default new TaprisCommand()
   .setName("help")

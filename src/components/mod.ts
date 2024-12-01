@@ -1,7 +1,7 @@
 import archpackageSelect from "@components/archpackageSelect.ts";
 import refreshArchpackage from "@components/refreshArchpackage.ts";
 import { TaprisComponent } from "@framework/mod.ts";
-import { Collection } from "harmony/mod.ts";
+import { Collection } from "@harmony/harmony";
 import delete_message from "./deleteMessage.ts";
 
 export const components = [

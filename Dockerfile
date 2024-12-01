@@ -1,9 +1,8 @@
-FROM denoland/deno:alpine-1.45.3
+FROM denoland/deno:alpine-2.1.2
+LABEL authors="tapnisu"
 
-USER deno
 WORKDIR /app
-
-ADD . /app
+COPY . .
 RUN deno task cache
 ENV MODE=production
 

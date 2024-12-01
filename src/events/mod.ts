@@ -2,7 +2,7 @@ import interactionCreate from "@events/interactionCreate.ts";
 import ready from "@events/ready.ts";
 import reconnect from "@events/reconnect.ts";
 import { TaprisEvent } from "@framework/mod.ts";
-import { Collection } from "harmony/mod.ts";
+import { Collection } from "@harmony/harmony";
 
 export const events = [ready, interactionCreate, reconnect];
 

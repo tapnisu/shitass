@@ -1,7 +1,7 @@
 import archpackage from "@commands/api/archpackage.ts";
 import help from "@commands/info/help.ts";
 import { TaprisCommand } from "@framework/mod.ts";
-import { Collection } from "harmony/mod.ts";
+import { Collection } from "@harmony/harmony";
 
 export const commands = [help, archpackage];
 

@@ -3,7 +3,7 @@ import {
   ActionRowComponent,
   Embed,
   SelectComponentOption,
-} from "harmony/mod.ts";
+} from "@harmony/harmony";
 import * as xeorarch from "xeorarch/mod.ts";
 
 export default new TaprisComponent()
@@ -11,7 +11,7 @@ export default new TaprisComponent()
   .setRun(async (_client, interaction) => {
     const query = interaction.data.custom_id.replace(
       /refresh_archpackage_/,
-      ""
+      "",
     );
 
     const packages = (await xeorarch.Search.search(query)).slice(0, 10);

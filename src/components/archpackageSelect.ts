@@ -3,7 +3,7 @@ import {
   ActionRowComponent,
   Embed,
   SelectComponentOption,
-} from "harmony/mod.ts";
+} from "@harmony/harmony";
 import * as xeorarch from "xeorarch/mod.ts";
 
 export default new TaprisComponent()

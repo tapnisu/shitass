@@ -4,7 +4,7 @@ import {
   ClientEvents,
   Interaction,
   Message,
-} from "harmony/mod.ts";
+} from "@harmony/harmony";
 
 export type EventName = keyof ClientEvents;
 export type EventArgs<T extends EventName> = ClientEvents[T];

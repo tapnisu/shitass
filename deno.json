@@ -15,9 +15,9 @@
     "@core/": "./src/core/",
     "@events/": "./src/events/",
     "@framework/": "./src/framework/",
+    "@harmony/harmony": "jsr:@harmony/harmony@^2.9.1",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "@utils/": "./src/utils/",
-    "harmony/": "https://deno.land/x/harmony@v2.9.1/",
-    "std/": "https://deno.land/std@0.212.0/",
     "xeorarch/": "https://deno.land/x/xeorarchx@v3.1.0/"
   },
   "lock": false

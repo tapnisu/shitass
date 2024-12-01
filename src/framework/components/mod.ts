@@ -1,5 +1,5 @@
 import { TaprisClient } from "@core/mod.ts";
-import { Interaction, MessageComponentInteraction } from "harmony/mod.ts";
+import { Interaction, MessageComponentInteraction } from "@harmony/harmony";
 
 export type ComponentRun = (
   client: TaprisClient,

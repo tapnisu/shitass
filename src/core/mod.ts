@@ -3,7 +3,7 @@ import { ComponentsCollection } from "@components/mod.ts";
 import { EventsCollection } from "@events/mod.ts";
 import { TaprisCommand, TaprisComponent, TaprisEvent } from "@framework/mod.ts";
 import { Config } from "@utils/mod.ts";
-import { Client, Collection, GatewayIntents } from "harmony/mod.ts";
+import { Client, Collection, GatewayIntents } from "@harmony/harmony";
 
 export class TaprisClient extends Client {
   public commands: Collection<string, TaprisCommand>;

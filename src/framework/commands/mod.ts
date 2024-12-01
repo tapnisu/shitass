@@ -4,7 +4,7 @@ import {
   ApplicationCommandOption,
   PermissionResolvable,
   SlashCommandInteraction,
-} from "harmony/mod.ts";
+} from "@harmony/harmony";
 
 export type LocaleNames = "en" | "ru";
 

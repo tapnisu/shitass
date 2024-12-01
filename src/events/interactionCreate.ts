@@ -1,6 +1,6 @@
 import { TaprisClient } from "@core/mod.ts";
 import { TaprisEvent } from "@framework/mod.ts";
-import { Embed, Interaction } from "harmony/mod.ts";
+import { Embed, Interaction } from "@harmony/harmony";
 
 export default new TaprisEvent<"interactionCreate">()
   .setName("interactionCreate")

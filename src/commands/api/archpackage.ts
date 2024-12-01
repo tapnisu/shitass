@@ -4,7 +4,7 @@ import {
   ApplicationCommandOptionType,
   Embed,
   SelectComponentOption,
-} from "harmony/mod.ts";
+} from "@harmony/harmony";
 import * as xeorarch from "xeorarch/mod.ts";
 
 export default new TaprisCommand()
@@ -20,7 +20,7 @@ export default new TaprisCommand()
     await interaction.defer();
 
     const query = interaction.options.find(
-      (option) => option.name == "query"
+      (option) => option.name == "query",
     )?.value;
 
     const packages = (await xeorarch.Search.search(query)).slice(0, 10);

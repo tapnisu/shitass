@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine-2.2.4
+FROM denoland/deno:alpine-2.2.5
 LABEL authors="tapnisu"
 
 WORKDIR /app
